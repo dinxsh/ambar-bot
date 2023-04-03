@@ -2,6 +2,11 @@ from __future__ import annotations
 import discord
 from discord.ext import commands
 from discord import app_commands
+import pymongo
+
+uri = "mongodb+srv://dineshtalwadker:omshanti2005@ambar.shkhbep.mongodb.net/test"
+client = pymongo.MongoClient(uri)
+db = client.data
 
 import json
 from typing import (
@@ -55,22 +60,33 @@ class Bot(commands.Bot):
     def save_tourney_db(self) -> None:
         with open('tourney_db.json', 'w', encoding='utf8') as file:
             json.dump(self.tourney_db, file, indent=4)
+            col = db["tourney"]
+            db.tourney.deleteMany({})
 
     def save_badge_db(self) -> None:
         with open('badge_db.json', 'w', encoding='utf8') as file:
+            print(self.badge_db)
             json.dump(self.badge_db, file, indent=4)
+            col = db["badge"]
+            db.badge.deleteMany({})
 
     def save_trophy_db(self) -> None:
         with open('trophy_db.json', 'w', encoding='utf8') as file:
             json.dump(self.trophy_db, file, indent=4)
+            col = db["trophy"]
+            db.trophy.deleteMany({})
 
     def save_item_db(self) -> None:
         with open('item_db.json', 'w', encoding='utf8') as file:
             json.dump(self.item_db, file, indent=4)
+            col = db["item"]
+            db.item.deleteMany({})
 
     def save_ambar_db(self) -> None:
         with open('ambar_db.json', 'w', encoding='utf8') as file:
             json.dump(self.ambar_db, file, indent=4)
+            col = db["ambar"]
+            db.ambar.deleteMany({})
 
     def get_prefixes(self, bot: commands.Bot, message: discord.Message) -> list[str]:
         return [
@@ -100,9 +116,7 @@ class Bot(commands.Bot):
         await interaction.response.send_message(embed=self.embed('You are not an admin!'), ephemeral=True)
         return False
 
-
 bot = Bot()
-tree = app_commands.CommandTree(bot = self.Bot())
 
 @bot.command(aliases=[])
 @commands.is_owner()

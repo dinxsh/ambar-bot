@@ -1,4 +1,12 @@
 {
-    "badges": [],
+    "badges": [
+        {
+            "id": "d8d31d86adfcd1b0a27af6dc362e975f",
+            "name": "a",
+            "prefix": "a",
+            "on_grant": "Hey, {user_mention}! You have obtained the **{name}** badge!\nYou now have {user_badge_count} badges in total.\n\nI hope you enjoy your **{full_name}** badge!",
+            "image_url": "https://cdn.discordapp.com/ephemeral-attachments/1092048384556286065/1092430042535039076/isoambar.png"
+        }
+    ],
     "users": {}
 }
