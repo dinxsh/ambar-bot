@@ -123,7 +123,7 @@ class Bot(commands.Bot):
 
 
 bot = Bot()
-tree = app_commands.CommandTree(bot = self.Bot())
+tree = app_commands.CommandTree(bot = Bot())
 
 @bot.command(aliases=[])
 @commands.is_owner()
