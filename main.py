@@ -3,11 +3,6 @@ import discord
 from discord.ext import commands
 from discord import app_commands
 import pymongo
-
-uri = "mongodb+srv://dineshtalwadker:omshanti2005@ambar.shkhbep.mongodb.net/test"
-client = pymongo.MongoClient(uri)
-db = client.data
-
 import json
 from typing import (
     TYPE_CHECKING,
@@ -16,6 +11,11 @@ from typing import (
     Callable,
     Any,
 )
+
+uri = "mongodb+srv://dineshtalwadker:omshanti2005@ambar.shkhbep.mongodb.net/test"
+client = pymongo.MongoClient(uri)
+db = client.data
+
 if TYPE_CHECKING:
     from badge import Badges
     from trophy import Trophies
@@ -61,32 +61,40 @@ class Bot(commands.Bot):
         with open('tourney_db.json', 'w', encoding='utf8') as file:
             json.dump(self.tourney_db, file, indent=4)
             col = db["tourney"]
-            db.tourney.deleteMany({})
+            col.tourney.delete_many({})
+            col.tourney.insert_one(self.tourney_db)
 
     def save_badge_db(self) -> None:
         with open('badge_db.json', 'w', encoding='utf8') as file:
             print(self.badge_db)
             json.dump(self.badge_db, file, indent=4)
             col = db["badge"]
-            db.badge.deleteMany({})
+            col.badge.delete_many({})
+            print(self.badge_db)
+            col.badge.insert_one(self.badge_db)
 
     def save_trophy_db(self) -> None:
         with open('trophy_db.json', 'w', encoding='utf8') as file:
             json.dump(self.trophy_db, file, indent=4)
             col = db["trophy"]
-            db.trophy.deleteMany({})
+            col.trophy.delete_many({})
+            a = col.trophy.insert_one(self.trophy_db)
+            print(self.trophy_db)
 
     def save_item_db(self) -> None:
         with open('item_db.json', 'w', encoding='utf8') as file:
             json.dump(self.item_db, file, indent=4)
             col = db["item"]
-            db.item.deleteMany({})
+            col.item.delete_many({})
+            col.item.insert_one(self.item_db)
 
     def save_ambar_db(self) -> None:
         with open('ambar_db.json', 'w', encoding='utf8') as file:
+            print(file)
             json.dump(self.ambar_db, file, indent=4)
             col = db["ambar"]
-            db.ambar.deleteMany({})
+            col.ambar.delete_many({}) 
+            col.ambar.insert_one(self.ambar_db)
 
     def get_prefixes(self, bot: commands.Bot, message: discord.Message) -> list[str]:
         return [
