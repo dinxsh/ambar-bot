@@ -3,6 +3,11 @@ import discord
 from discord.ext import commands
 from discord import app_commands
 import pymongo
+
+uri = "mongodb+srv://dineshtalwadker:omshanti2005@ambar.shkhbep.mongodb.net/test"
+client = pymongo.MongoClient(uri)
+db = client.data
+
 import json
 from typing import (
     TYPE_CHECKING,
@@ -61,40 +66,32 @@ class Bot(commands.Bot):
         with open('tourney_db.json', 'w', encoding='utf8') as file:
             json.dump(self.tourney_db, file, indent=4)
             col = db["tourney"]
-            col.tourney.delete_many({})
-            col.tourney.insert_one(self.tourney_db)
+            db.tourney.deleteMany({})
 
     def save_badge_db(self) -> None:
         with open('badge_db.json', 'w', encoding='utf8') as file:
-            print(self.badge_db)
             json.dump(self.badge_db, file, indent=4)
             col = db["badge"]
-            col.badge.delete_many({})
-            print(self.badge_db)
-            col.badge.insert_one(self.badge_db)
+            db.badge.deleteMany({})
 
     def save_trophy_db(self) -> None:
         with open('trophy_db.json', 'w', encoding='utf8') as file:
             json.dump(self.trophy_db, file, indent=4)
             col = db["trophy"]
-            col.trophy.delete_many({})
-            a = col.trophy.insert_one(self.trophy_db)
-            print(self.trophy_db)
+            db.trophy.deleteMany({})
 
     def save_item_db(self) -> None:
         with open('item_db.json', 'w', encoding='utf8') as file:
             json.dump(self.item_db, file, indent=4)
             col = db["item"]
-            col.item.delete_many({})
-            col.item.insert_one(self.item_db)
+            db.item.deleteMany({})
 
     def save_ambar_db(self) -> None:
         with open('ambar_db.json', 'w', encoding='utf8') as file:
             print(file)
             json.dump(self.ambar_db, file, indent=4)
             col = db["ambar"]
-            col.ambar.delete_many({}) 
-            col.ambar.insert_one(self.ambar_db)
+            db.ambar.deleteMany({})
 
     def get_prefixes(self, bot: commands.Bot, message: discord.Message) -> list[str]:
         return [
@@ -124,7 +121,9 @@ class Bot(commands.Bot):
         await interaction.response.send_message(embed=self.embed('You are not an admin!'), ephemeral=True)
         return False
 
+
 bot = Bot()
+tree = app_commands.CommandTree(bot = self.Bot())
 
 @bot.command(aliases=[])
 @commands.is_owner()
