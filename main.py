@@ -150,6 +150,3 @@ async def on_command_error(ctx, error) -> None:
 def main() -> None:
     bot.run(token)
 
-
-if __name__ == '__main__':
-    main()
