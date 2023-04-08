@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "badges": [
         {
             "id": "d8d31d86adfcd1b0a27af6dc362e975f",
@@ -20,4 +21,8 @@
             "d8d31d86adfcd1b0a27af6dc362e975f": 1
         }
     }
+=======
+    "badges": [],
+    "users": {}
+>>>>>>> parent of 1c0f462 (Revert "initial commit")
 }
