@@ -1,28 +1,4 @@
 {
-<<<<<<< HEAD
-    "badges": [
-        {
-            "id": "d8d31d86adfcd1b0a27af6dc362e975f",
-            "name": "a",
-            "prefix": "a",
-            "on_grant": "Hey, {user_mention}! You have obtained the **{name}** badge!\nYou now have {user_badge_count} badges in total.\n\nI hope you enjoy your **{full_name}** badge!",
-            "image_url": "https://cdn.discordapp.com/ephemeral-attachments/1092048384556286065/1092430042535039076/isoambar.png"
-        },
-        {
-            "id": "9c33b9b4ed1cc8b8a043b873d64518ed",
-            "name": "test",
-            "prefix": "\ud83d\udd25",
-            "on_grant": "Hey, {user_mention}! You have obtained the **{name}** badge!\nYou now have {user_badge_count} badges in total.\n\nI hope you enjoy your **{full_name}** badge!",
-            "image_url": null
-        }
-    ],
-    "users": {
-        "756368919555604540": {
-            "d8d31d86adfcd1b0a27af6dc362e975f": 1
-        }
-    }
-=======
     "badges": [],
     "users": {}
->>>>>>> parent of 1c0f462 (Revert "initial commit")
 }
