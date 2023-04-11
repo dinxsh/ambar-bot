@@ -55,44 +55,48 @@ class Bot(commands.Bot):
 
     def save_tourney_db(self) -> None:
         with open('tourney_db.json', 'w', encoding='utf8') as file:
-            json.dump(self.tourney_db, file, indent=4)
+            data = file.read() 
             col = db["tourney"]
             col.tourney.delete_many({})
-            data = file.read()
-            col.ambar.insert_one(data)
+            col.ambar.insert_one(json.loads(data))
+        with open('tourney_db.json', 'w', encoding='utf8') as file:
+            json.dump(self.tourney_db, file, indent=4)
 
     def save_badge_db(self) -> None:
-        with open('badge_db.json', 'w', encoding='utf8') as file:
-            print(self.badge_db)
-            json.dump(self.badge_db, file, indent=4)
+        with open('badge_db.json', 'r+', encoding='utf8') as file:
+            data = file.read()    
             col = db["badge"]
             col.badge.delete_many({})
-            data = file.read()
-            col.ambar.insert_one(data)
+            col.ambar.insert_one(json.loads(data))
+        with open('badge_db.json', 'w', encoding='utf8') as file:
+            json.dump(self.badge_db, file, indent=4)
 
     def save_trophy_db(self) -> None:
-        with open('trophy_db.json', 'w', encoding='utf8') as file:
-            json.dump(self.trophy_db, file, indent=4)
+        with open('trophy_db.json', 'r+', encoding='utf8') as file:
+            data = file.read()
             col = db["trophy"]
             col.trophy.delete_many({})
-            data = file.read()
-            col.ambar.insert_one(data)
+            col.ambar.insert_one(json.loads(data))
+        with open('trophy_db.json', 'w', encoding='utf8') as file:
+            json.dump(self.trophy_db, file, indent=4)
 
     def save_item_db(self) -> None:
-        with open('item_db.json', 'w', encoding='utf8') as file:
-            json.dump(self.item_db, file, indent=4)
+        with open('item_db.json', 'r+', encoding='utf8') as file:
+            data = file.read()
             col = db["item"]
             col.item.delete_many({})
-            data = file.read()
-            col.ambar.insert_one(data)
+            col.ambar.insert_one(json.loads(data))
+        with open('item_db.json', 'w', encoding='utf8') as file:
+            json.dump(self.item_db, file, indent=4)
 
     def save_ambar_db(self) -> None:
         with open('ambar_db.json', 'r+', encoding='utf8') as file:
-            json.dump(self.ambar_db, file, indent=4) 
+            data = file.read()
             col = db["ambar"]
             col.ambar.delete_many({})
-            data = file.read()
-            print(data)
+            col.ambar.insert_one(json.loads(data))
+        with open('ambar_db.json', 'w', encoding='utf8') as file:
+            json.dump(self.ambar_db, file, indent=4)
 
     def get_prefixes(self, bot: commands.Bot, message: discord.Message) -> list[str]:
         return [
