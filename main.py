@@ -90,7 +90,7 @@ class Bot(commands.Bot):
         with open('ambar_db.json', 'r+', encoding='utf8') as file:
             json.dump(self.ambar_db, file, indent=4) 
             col = db["ambar"]
-            col.ambar.delete_many({}) 
+            col.ambar.delete_many({})
             data = file.read()
             print(data)
 
@@ -106,7 +106,7 @@ class Bot(commands.Bot):
 
     async def setup_hook(self) -> None:
         await self.load()
-        self.owner = self.application.owner # type: ignore
+        self.owner = self.application.owner 
         print(f'\t\t\t\033[31m\033[1m >>> Logged in as {self.user.name}#{self.user.discriminator} <<< \033[0m')
 
     def embed(self, description: str, title: Optional[str] = None, color: Optional[int] = None) -> discord.Embed:
