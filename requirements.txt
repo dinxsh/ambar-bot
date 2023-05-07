@@ -1,3 +1,4 @@
 discord
 pymongo
 typing
+typing_extensions
