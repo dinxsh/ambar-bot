@@ -1,3 +1,7 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+# More info on Python, GitHub Actions, and Azure App Service: https://aka.ms/python-webapps-actions
+
 name: Build and deploy Python app to Azure Web App - AmbarBot
 
 on:
@@ -25,6 +29,8 @@ jobs:
       
       - name: Install dependencies
         run: pip install -r requirements.txt
+        
+      # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
@@ -33,9 +39,6 @@ jobs:
           path: |
             . 
             !venv/
-      - name: Run Bot
-        run: python main.py
-  
 
   deploy:
     runs-on: ubuntu-latest
@@ -57,4 +60,4 @@ jobs:
         with:
           app-name: 'AmbarBot'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DA2D2145003A418E8318F86CC7FA3FED }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9F8FB405592748D39D0AD51FB304A2D0 }}
