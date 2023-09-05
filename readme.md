@@ -25,3 +25,5 @@ discord bot for ambar
     }
 }   
 ```
+
+default settings include default configuration for any tournament you create. change it if you want every tournament created to have different default settings than the ones provided.
