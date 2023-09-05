@@ -1,16 +1,12 @@
 from __future__ import annotations
 import discord
 from discord.ext import commands
-import pymongo
+from discord import app_commands
 import json
 from typing import (
     TYPE_CHECKING,
     Optional,
 )
-
-uri = "mongodb+srv://dineshtalwadker:omshanti2005@ambar.shkhbep.mongodb.net/test"
-client = pymongo.MongoClient(uri)
-db = client.data
 
 if TYPE_CHECKING:
     from badge import Badges
@@ -55,46 +51,21 @@ class Bot(commands.Bot):
 
     def save_tourney_db(self) -> None:
         with open('tourney_db.json', 'w', encoding='utf8') as file:
-            data = file.read() 
-            col = db["tourney"]
-            col.tourney.delete_many({})
-            col.ambar.insert_one(json.loads(data))
-        with open('tourney_db.json', 'w', encoding='utf8') as file:
             json.dump(self.tourney_db, file, indent=4)
 
     def save_badge_db(self) -> None:
-        with open('badge_db.json', 'r+', encoding='utf8') as file:
-            data = file.read()    
-            col = db["badge"]
-            col.badge.delete_many({})
-            col.ambar.insert_one(json.loads(data))
         with open('badge_db.json', 'w', encoding='utf8') as file:
             json.dump(self.badge_db, file, indent=4)
 
     def save_trophy_db(self) -> None:
-        with open('trophy_db.json', 'r+', encoding='utf8') as file:
-            data = file.read()
-            col = db["trophy"]
-            col.trophy.delete_many({})
-            col.ambar.insert_one(json.loads(data))
         with open('trophy_db.json', 'w', encoding='utf8') as file:
             json.dump(self.trophy_db, file, indent=4)
 
     def save_item_db(self) -> None:
-        with open('item_db.json', 'r+', encoding='utf8') as file:
-            data = file.read()
-            col = db["item"]
-            col.item.delete_many({})
-            col.ambar.insert_one(json.loads(data))
         with open('item_db.json', 'w', encoding='utf8') as file:
             json.dump(self.item_db, file, indent=4)
 
     def save_ambar_db(self) -> None:
-        with open('ambar_db.json', 'r+', encoding='utf8') as file:
-            data = file.read()
-            col = db["ambar"]
-            col.ambar.delete_many({})
-            col.ambar.insert_one(json.loads(data))
         with open('ambar_db.json', 'w', encoding='utf8') as file:
             json.dump(self.ambar_db, file, indent=4)
 
@@ -131,7 +102,7 @@ bot = Bot()
 @bot.command(aliases=[])
 @commands.is_owner()
 async def Sync(ctx) -> None:
-    await bot.tree.sync()
+    await bot.tree.sync(guild=discord.Object(id=1147657420382937098))
     await ctx.send('Successfully synced!')
 
 
